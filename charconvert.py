@@ -2,16 +2,22 @@
 #this script should read in a few files and spit out a useful SAIKS js file
 #you can see an example on https://github.com/jdrizin/saiks
 
-#i'm using regexpn
+#this script takes 3 arguments on the command line,
+#
+
+#i'm using re.sub and argv
 import re
+from sys import argv
+
+codingfile, statesfile, outputfile = argv
 
 #read in the files and strip newlines
-coding = [line.strip() for line in open('/home/josh/artocarpus/saiks/charactercoding.csv')]
-states = [line.strip() for line in open('/home/josh/artocarpus/saiks/characterstates.csv')]
+coding = [line.strip() for line in open(codingfile)]
+states = [line.strip() for line in open(statesfile)]
 
 #define some saiks variables
 
-# var dataset = "hmtl code" - this goes in the top frame
+# var dataset = "hmtl code" - this goes in the top frame, and can be long
 dataset = 'var dataset = "<center><h2><b>Artocarpus</b></h2></center>"'
 
 # var binary - setting this to 0 allows multistate variables
@@ -37,6 +43,7 @@ output = (dataset + "\n\n" + varbin + "\n\n" +
 		  varitems + ''.join(str(elem) for elem in wcoding))
 
 #write out a text file
-text_file = open("/home/josh/artocarpus/saiks/artocarpus.js", "w")
+print "converted to SAIKS format!"
+text_file = open(outputfile, "w")
 text_file.write(output)
 text_file.close
