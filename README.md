@@ -1,4 +1,6 @@
 saiks-artocarpus
 ================
 
-the artocarpus SAIKS setup
+see README.original for more information
+
+the artocarpus SAIKS setup. 

@@ -1,0 +1,60 @@
+<html>
+<head>
+<title>SLIKS-Alike Interactive Key Software (SAIKS)</title>
+
+<!-- replace acer.js with your data set -->
+<!-- note that binary = 1 data sets won't work with SAIKS -->
+<SCRIPT language=JavaScript src="acer.js"></SCRIPT>
+
+<!-- import SAIKS script -->
+<SCRIPT language=JavaScript src="saiks.js"></SCRIPT>
+
+</head><body>
+
+<!-- this main() call causes the tables to be output -->
+<SCRIPT language="JavaScript">main();</SCRIPT>
+
+<p>To use, select characteristics from the table at the left.  As you
+make selections, items in the list of taxa on the right will turn red
+to indicate that they do not match your selections.  Also as you select
+characteristics, items in the table at the right will grey out to
+indicate that they are not possible combinations anymore (to select
+them would cause none of the taxa to match).</p>
+
+<p>Or, you may click on a taxon at the table on the right, and all of
+the characteristics of that taxon will be used to seed the
+characteristics table.</p>
+
+<p>When the "Exclusive" checkbox is checked, when you select a characteristic,
+all of the other characteristics in that row will be automatically
+unselected for you.  Otherwise, you may select as many characteristics
+as you want in a row and it will be treated as an inclusive OR of the
+criteria.</p>
+
+<table width=100%>
+<tr><td width=50% align=center>
+
+<p>Color key for the characteristics table:<br>
+<table border=1>
+<tr><td>name of characteristic</td></tr>
+<tr><td bgcolor="#AAAAFF">unselected characteristic</td></tr>
+<tr><td bgcolor="#00FF00">selected characteristic</td></tr>
+<tr><td bgcolor="#7777AA">unselectable characteristic</td></tr>
+</table></p>
+
+</td><td width=50% align=center>
+
+<p>Color key for the taxa table:<br>
+<table border=1>
+<tr><td>link to descriptive page</td></tr>
+<tr><td bgcolor="#00FF00">taxa matches selected characteristics</td></tr>
+<tr><td bgcolor="#FF4444">taxa does not match</td></tr>
+</table></p>
+
+</td></tr></table>
+
+<hr>
+
+<p>SAIKS is based on <a href="http://stingersplace.com/SLIKS/">SLIKS by Stinger</a>. SAIKS is copyright (c) 2006 Greg Alexander, to be distributed under the GPLv2. </p>
+
+</body></html>
