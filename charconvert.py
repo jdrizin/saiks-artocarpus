@@ -32,8 +32,8 @@ wcoding[-1] = re.sub(',\\n', '];', wcoding[-1] )
 wstates[-1] = re.sub(',\\n', '];', wstates[-1] )
 
 #output everything
-output = (dataset + "\n" + varbin + "\n" + 
-		  varchars + ''.join(str(elem) for elem in wstates) + "\n" +
+output = (dataset + "\n\n" + varbin + "\n\n" + 
+		  varchars + ''.join(str(elem) for elem in wstates) + "\n\n" +
 		  varitems + ''.join(str(elem) for elem in wcoding))
 
 #write out a text file
