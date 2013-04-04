@@ -34,13 +34,13 @@ wcoding = ["[" + s + "],\n" for s in coding]
 wstates = ["[" + s + "],\n" for s in states]
 
 #replace ,\n in the last element with ];, the closing phrase
-wcoding[-1] = re.sub(',\\n', '];', wcoding[-1] )
-wstates[-1] = re.sub(',\\n', '];', wstates[-1] )
+wcoding[-1] = re.sub(',\\n', '];', wcoding[-1])
+wstates[-1] = re.sub(',\\n', '];', wstates[-1])
 
 #output everything
-output = (dataset + "\n\n" + varbin + "\n\n" + 
-		  varchars + ''.join(str(elem) for elem in wstates) + "\n\n" +
-		  varitems + ''.join(str(elem) for elem in wcoding))
+output = (dataset + "\n\n" + varbin + "\n\n" +
+          varchars + ''.join(str(elem) for elem in wstates) + "\n\n" +
+          varitems + ''.join(str(elem) for elem in wcoding))
 
 #write out a text file
 print "converted to SAIKS format!"
