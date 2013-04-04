@@ -9,7 +9,7 @@
 import re
 from sys import argv
 
-codingfile, statesfile, outputfile = argv
+script, codingfile, statesfile, outputfile = argv
 
 #read in the files and strip newlines
 coding = [line.strip() for line in open(codingfile)]
