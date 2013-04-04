@@ -14,8 +14,11 @@ dataset = 'var dataset = "<center><h2><b>Artocarpus</b></h2></center>"'
 # var binary - setting this to 0 allows multistate variables
 varbin = "var binary = 0"
 
+#char strings for the first js variable - append state data
+varchars = 'var chars = [[ "Scientific name"],\n'
 
-
+#append coding data
+varitems = 'var items = [ [""],\n'
 
 #wrap the csv lines in [],\n;
 wcoding = ["[" + s + "],\n" for s in coding]
