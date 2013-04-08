@@ -14,8 +14,8 @@ script, codingfile, statesfile, outputfile = argv
 #read in the files, strip newlines, remove header
 coding = [line.strip() for line in open(codingfile)]
 states = [line.strip() for line in open(statesfile)]
-coding.remove(0)
-states.remove(0)
+del coding[0]
+del states[0]
 
 #define some saiks variables
 
