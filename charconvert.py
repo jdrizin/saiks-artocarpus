@@ -11,9 +11,11 @@ from sys import argv
 
 script, codingfile, statesfile, outputfile = argv
 
-#read in the files and strip newlines
+#read in the files, strip newlines, remove header
 coding = [line.strip() for line in open(codingfile)]
 states = [line.strip() for line in open(statesfile)]
+coding.remove(0)
+states.remove(0)
 
 #define some saiks variables
 
@@ -45,5 +47,5 @@ output = (dataset + "\n\n" + varbin + "\n\n" +
 #write out a text file
 print "converted to SAIKS format!"
 text_file = open(outputfile, "w")
-text_file.write(output)
-text_file.close
+text_file.write(output
+p)text_file.close
