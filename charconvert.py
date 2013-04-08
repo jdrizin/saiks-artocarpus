@@ -11,7 +11,7 @@ import argparse
 parser = argparse.ArgumentParser(description='Process coding and state CSV files into SAIKS/SLIKS format, stripping uncoded characters')
 parser.add_argument("coding", help="filename for the coding CSV file")
 parser.add_argument("states", help="filename for the state CSV file")
-parse.add_argument("--html", help="filename of the HTML file containing the SLIKS/SAIKS header")
+parser.add_argument("--html", help="filename of the HTML file containing the SLIKS/SAIKS header")
 parser.add_argument("output", help="output filename")
 args = parser.parse_args()
 
