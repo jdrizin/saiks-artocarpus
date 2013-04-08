@@ -30,7 +30,8 @@ else:
     dataset = 'var dataset = "<center><h2><b>Artocarpus</b></h2></center>"'
 
 #strip out 'blank' codes, missing characters break SAIKS
-clcoding = [x for x in coding if not (',,,' in x)]
+cleancoding = [x for x in coding if not (',,,' in x)]
+cleanstates = [re.sub(',+$', '', s) for s in states]
 
 # var binary - setting this to 0 allows multistate variables
 varbin = "var binary = 0"
@@ -42,8 +43,8 @@ varchars = 'var chars = [[ "Scientific name"],\n'
 varitems = 'var items = [ [""],\n'
 
 #wrap the csv lines in [],\n;
-wcoding = ["[" + s + "],\n" for s in clcoding]
-wstates = ["[" + s + "],\n" for s in states]
+wcoding = ["[" + s + "],\n" for s in cleancoding]
+wstates = ["[" + s + "],\n" for s in cleanstates]
 
 #replace ,\n in the last element with ];, the closing phrase
 wcoding[-1] = re.sub(',\\n', '];', wcoding[-1])
