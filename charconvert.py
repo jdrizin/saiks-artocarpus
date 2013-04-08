@@ -3,9 +3,9 @@
 #you can see an example on https://github.com/jdrizin/saiks
 
 #this script takes 3 arguments on the command line,
-#
 
-#i'm using re.sub and argv
+#i'm using re.sub and argv. apparently i need argparse if i want useful docs
+#see http://stackoverflow.com/questions/4042452/display-help-message-with-python-argparse-when-script-is-called-without-any-argu
 import re
 from sys import argv
 
@@ -19,7 +19,7 @@ states.remove(0)
 
 #define some saiks variables
 
-# var dataset = "hmtl code" - this goes in the top frame, and can be long
+# var dataset = "html code" - this goes in the top frame, and can be long
 dataset = 'var dataset = "<center><h2><b>Artocarpus</b></h2></center>"'
 
 # var binary - setting this to 0 allows multistate variables
