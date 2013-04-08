@@ -8,7 +8,7 @@
 import re
 import argparse
 
-parser = argparse.ArgumentParser(description='Process coding and state CSV files into SAIKS/SLIKS format')
+parser = argparse.ArgumentParser(description='Process coding and state CSV files into SAIKS/SLIKS format, stripping uncoded characters')
 parser.add_argument("coding", help="filename for the coding CSV file")
 parser.add_argument("states", help="filename for the state CSV file")
 parse.add_argument("--html", help="filename of the HTML file containing the SLIKS/SAIKS header")
@@ -29,6 +29,9 @@ if args.html:
 else:
     dataset = 'var dataset = "<center><h2><b>Artocarpus</b></h2></center>"'
 
+#strip out 'blank' codes, missing characters break SAIKS
+clcoding = [x for x in coding if not (',,,' in x)]
+
 # var binary - setting this to 0 allows multistate variables
 varbin = "var binary = 0"
 
@@ -39,7 +42,7 @@ varchars = 'var chars = [[ "Scientific name"],\n'
 varitems = 'var items = [ [""],\n'
 
 #wrap the csv lines in [],\n;
-wcoding = ["[" + s + "],\n" for s in coding]
+wcoding = ["[" + s + "],\n" for s in clcoding]
 wstates = ["[" + s + "],\n" for s in states]
 
 #replace ,\n in the last element with ];, the closing phrase
