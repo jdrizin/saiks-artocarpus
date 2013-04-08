@@ -4,16 +4,19 @@
 
 #this script takes 3 arguments on the command line,
 
-#i'm using re.sub and argv. apparently i need argparse if i want useful docs
-#see http://stackoverflow.com/questions/4042452/display-help-message-with-python-argparse-when-script-is-called-without-any-argu
+#i'm using re.sub and argparse
 import re
-from sys import argv
+import argparse
 
-script, codingfile, statesfile, outputfile = argv
+parser = argparse.ArgumentParser(description='Process coding and state CSV files into SAIKS/SLIKS format')
+parser.add_argument("coding", help="filename for the coding CSV file")
+parser.add_argument("states", help="filename for the state CSV file")
+parser.add_argument("output", help="output filename")
+args = parser.parse_args()
 
 #read in the files, strip newlines, remove header
-coding = [line.strip() for line in open(codingfile)]
-states = [line.strip() for line in open(statesfile)]
+coding = [line.strip() for line in open(args.coding)]
+states = [line.strip() for line in open(args.states)]
 del coding[0]
 del states[0]
 
@@ -46,6 +49,6 @@ output = (dataset + "\n\n" + varbin + "\n\n" +
 
 #write out a text file
 print "converted to SAIKS format!"
-text_file = open(outputfile, "w")
+text_file = open(args.output, "w")
 text_file.write(output)
 text_file.close
