@@ -47,5 +47,5 @@ output = (dataset + "\n\n" + varbin + "\n\n" +
 #write out a text file
 print "converted to SAIKS format!"
 text_file = open(outputfile, "w")
-text_file.write(output
-p)text_file.close
+text_file.write(output)
+text_file.close
