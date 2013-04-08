@@ -11,6 +11,7 @@ import argparse
 parser = argparse.ArgumentParser(description='Process coding and state CSV files into SAIKS/SLIKS format')
 parser.add_argument("coding", help="filename for the coding CSV file")
 parser.add_argument("states", help="filename for the state CSV file")
+parse.add_argument("--html", help="filename of the HTML file containing the SLIKS/SAIKS header")
 parser.add_argument("output", help="output filename")
 args = parser.parse_args()
 
@@ -23,7 +24,10 @@ del states[0]
 #define some saiks variables
 
 # var dataset = "html code" - this goes in the top frame, and can be long
-dataset = 'var dataset = "<center><h2><b>Artocarpus</b></h2></center>"'
+if args.html:
+    dataset = open(args.html)
+else:
+    dataset = 'var dataset = "<center><h2><b>Artocarpus</b></h2></center>"'
 
 # var binary - setting this to 0 allows multistate variables
 varbin = "var binary = 0"
