@@ -27,14 +27,19 @@ del states[0]
 if args.html:
     dataset = open(args.html)
 else:
-    dataset = 'var dataset = "<center><h2><b>Artocarpus</b></h2></center>"'
+	#use plain html here, double quotes are fine inside single quotes
+    dataset = '<center><h2><b>Artocarpus</b></h2></center>'
+
+#wrap the HTML in quotes and make it a javascript variable
+dataset = 'var dataset = "' + dataset + '";' 
+
 
 #strip out 'blank' codes, missing characters break SAIKS
 cleancoding = [x for x in coding if not (',,,' in x)]
 cleanstates = [re.sub(',+$', '', s) for s in states]
 
 # var binary - setting this to 0 allows multistate variables
-varbin = "var binary = 0"
+varbin = "var binary = false;"
 
 #char strings for the first js variable - append state data
 varchars = 'var chars = [[ "Scientific name"],\n'
