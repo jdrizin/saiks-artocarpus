@@ -13,6 +13,6 @@ charconvert.py --help for args.
 
 
 # SAIKS
-see README.original for more information about SAIKS
+see README.SAIKS for more information about SAIKS
 
 the artocarpus SAIKS setup. 
