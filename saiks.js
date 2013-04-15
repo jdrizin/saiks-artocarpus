@@ -444,7 +444,9 @@ function cache_items() {
 		item_cache[i] = new Array();
 		for (j = first_row; j < items[i].length; j++) {
 			var x = items[i][j];
-			if (x != "?" ) {
+			console.log(items[i]);
+			console.log(x);
+			if (x != "?" && x.length == 1) {
 				item_cache[i][j] = parseInt(x,36);
 			}
 		}
