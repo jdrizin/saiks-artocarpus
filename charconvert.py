@@ -8,7 +8,7 @@
 import re
 import argparse
 
-parser = argparse.ArgumentParser(description='Process coding and state CSV files into SAIKS/SLIKS format, stripping uncoded characters')
+parser = argparse.ArgumentParser(description='Process coding and state CSV files into SAIKS/SLIKS format, stripping uncoded species and converting unknown character values into wildcards')
 parser.add_argument("coding", help="filename for the coding CSV file")
 parser.add_argument("states", help="filename for the state CSV file")
 parser.add_argument("output", help="output filename")
@@ -20,12 +20,13 @@ states = [line.strip() for line in open(args.states)]
 del coding[0]
 del states[0]
 
-#define some saiks variables
-
 #strip out 'blank' codes, missing characters break SAIKS
 cleancoding = [x for x in coding if not (',,,' in x)]
+cleanercoding = [re.sub('"-"', '"?"', s) for s in states]
+#remove trailing commas
 cleanstates = [re.sub(',+$', '', s) for s in states]
 
+#define some saiks variables
 # var binary - setting this to 0 allows multistate variables
 varbin = "var binary = false;"
 
@@ -36,7 +37,7 @@ varchars = 'var chars = [[ "Scientific name"],\n'
 varitems = 'var items = [ [""],\n'
 
 #wrap the csv lines in [],\n;
-wcoding = ["[" + s + "],\n" for s in cleancoding]
+wcoding = ["[" + s + "],\n" for s in cleanercoding]
 wstates = ["[" + s + "],\n" for s in cleanstates]
 
 #replace ,\n in the last element with ];, the closing phrase
