@@ -11,7 +11,6 @@ import argparse
 parser = argparse.ArgumentParser(description='Process coding and state CSV files into SAIKS/SLIKS format, stripping uncoded characters')
 parser.add_argument("coding", help="filename for the coding CSV file")
 parser.add_argument("states", help="filename for the state CSV file")
-parser.add_argument("--html", help="filename of the HTML file containing the SLIKS/SAIKS header")
 parser.add_argument("output", help="output filename")
 args = parser.parse_args()
 
@@ -22,17 +21,6 @@ del coding[0]
 del states[0]
 
 #define some saiks variables
-
-# var dataset = "html code" - this goes in the top frame, and can be long
-if args.html:
-    dataset = open(args.html)
-else:
-	#use plain html here, double quotes are fine inside single quotes
-    dataset = '<center><h2><b>Artocarpus</b></h2></center>'
-
-#wrap the HTML in quotes and make it a javascript variable
-dataset = 'var dataset = "' + dataset + '";' 
-
 
 #strip out 'blank' codes, missing characters break SAIKS
 cleancoding = [x for x in coding if not (',,,' in x)]
@@ -56,7 +44,7 @@ wcoding[-1] = re.sub(',\\n', '];', wcoding[-1])
 wstates[-1] = re.sub(',\\n', '];', wstates[-1])
 
 #output everything
-output = (dataset + "\n\n" + varbin + "\n\n" +
+output = (varbin + "\n\n" +
           varchars + ''.join(str(elem) for elem in wstates) + "\n\n" +
           varitems + ''.join(str(elem) for elem in wcoding))
 
