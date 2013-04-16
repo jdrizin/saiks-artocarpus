@@ -12,6 +12,7 @@ parser = argparse.ArgumentParser(description='Process coding and state CSV files
 parser.add_argument("coding", help="filename for the coding CSV file")
 parser.add_argument("states", help="filename for the state CSV file")
 parser.add_argument("output", help="output filename")
+parser.add_argument("-v", action='store_true', dest="printverbose", default=False)
 args = parser.parse_args()
 
 #read in the files, strip newlines, remove header
@@ -20,9 +21,17 @@ states = [line.strip() for line in open(args.states)]
 del coding[0]
 del states[0]
 
-#strip out 'blank' codes, missing characters break SAIKS
+## strip out 'blank' codes, missing characters break SAIKS
+
+
+if args.printverbose:
+	codingremoved = [x for x in coding if (',,,' in x)] #list of bad ones
+	removedspecies = [re.findall('"([^"]*)"', x) for x in codingremoved]
+	cremovedspecies = [s.replace('\\xc2\\xa0', '') for s in removedspecies]
+
 cleancoding = [x for x in coding if not (',,,' in x)]
-cleanercoding = [re.sub('"-"', '"?"', s) for s in cleancoding]
+#change missing data, -, to wildcard, ?
+cleanercoding = [re.sub('"jj"', '"?"', s) for s in cleancoding]
 #remove trailing commas
 cleanstates = [re.sub(',+$', '', s) for s in states]
 
