@@ -22,7 +22,7 @@ del states[0]
 
 #strip out 'blank' codes, missing characters break SAIKS
 cleancoding = [x for x in coding if not (',,,' in x)]
-cleanercoding = [re.sub('"-"', '"\?"', s) for s in cleancoding]
+cleanercoding = [re.sub('"-"', '"?"', s) for s in cleancoding]
 #remove trailing commas
 cleanstates = [re.sub(',+$', '', s) for s in states]
 
