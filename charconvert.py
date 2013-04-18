@@ -29,11 +29,12 @@ if args.printverbose:
 	removedspecies = [re.findall('"([^"]*)"', x) for x in codingremoved]
 	cremovedspecies = [s.replace('\\xc2\\xa0', '') for s in removedspecies]
 
-cleancoding = [x for x in coding if not (',,,' in x)]
+codingc1 = [x for x in coding if not (',,,' in x)]
 #change missing data, -, to wildcard, ?
-cleanercoding = [re.sub('"jj"', '"?"', s) for s in cleancoding]
+codingc2 = [re.sub('"jj"', '"?"', s) for s in codingc1]
+codingc3 = [re.sub(',([0-9]+)', r',"\1"', s) for s in codingc2] #add "" to all fields
 #remove trailing commas
-cleanstates = [re.sub(',+$', '', s) for s in states]
+statesc1 = [re.sub(',+$', '', s) for s in states]
 
 #define some saiks variables
 # var binary - setting this to 0 allows multistate variables
@@ -46,8 +47,8 @@ varchars = 'var chars = [[ "Scientific name"],\n'
 varitems = 'var items = [ [""],\n'
 
 #wrap the csv lines in [],\n;
-wcoding = ["[" + s + "],\n" for s in cleanercoding]
-wstates = ["[" + s + "],\n" for s in cleanstates]
+wcoding = ["[" + s + "],\n" for s in codingc3]
+wstates = ["[" + s + "],\n" for s in statesc1]
 
 #replace ,\n in the last element with ];, the closing phrase
 wcoding[-1] = re.sub(',\\n', '];', wcoding[-1])
