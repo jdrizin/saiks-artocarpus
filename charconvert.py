@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+  #!/usr/bin/env python
 #this script should read in a few files and spit out a useful SAIKS js file
 #you can see an example on https://github.com/jdrizin/saiks
 
@@ -12,7 +12,8 @@ parser = argparse.ArgumentParser(description='Process coding and state CSV files
 parser.add_argument("coding", help="filename for the coding CSV file")
 parser.add_argument("states", help="filename for the state CSV file")
 parser.add_argument("output", help="output filename")
-parser.add_argument("-v", action='store_true', dest="printverbose", default=False)
+parser.add_argument("-v", action='store_true', dest="printverbose", default=False, help="Display the species names that were stripped due to missing character coding")
+parser.add_argument("-i", action='store_true', dest="divimage", default=False, help="Wrap character description images in <div> tags to display them on the key. Optional.")
 args = parser.parse_args()
 
 #read in the files, strip newlines, remove header
@@ -21,20 +22,32 @@ states = [line.strip() for line in open(args.states)]
 del coding[0]
 del states[0]
 
-## strip out 'blank' codes, missing characters break SAIKS
-
-
+#find the ones that we're going to remove and print them, if -v
 if args.printverbose:
-	codingremoved = [x for x in coding if (',,,' in x)] #list of bad ones
-	removedspecies = [re.findall('"([^"]*)"', x) for x in codingremoved]
-	cremovedspecies = [s.replace('\\xc2\\xa0', '') for s in removedspecies]
+    codingremoved = [x for x in coding if (',,,' in x)] #list of bad ones
+    removedspecies = [re.findall('"([^"]*)"', x) for x in codingremoved]
+    cremovedspecies = [s.replace('\\xc2\\xa0', '') for s in removedspecies]
 
+## strip out 'blank' codes, missing characters break SAIKS
 codingc1 = [x for x in coding if not (',,,' in x)]
 #change missing data, -, to wildcard, ?
 codingc2 = [re.sub('"jj"', '"?"', s) for s in codingc1]
 codingc3 = [re.sub(',([0-9]+)', r',"\1"', s) for s in codingc2] #add "" to all fields
 #remove trailing commas
 statesc1 = [re.sub(',+$', '', s) for s in states]
+
+# optional: use images in states! by wrapping the species name in a div, we can
+# display a popup with some javascript. how?
+# <div class='cell' data-images='PATH/TO/IMAGE'>leaf type</div>, rather than 'leaf type'
+# this is not required, so i put it behind a command-line option. it assumes file paths
+# are in the column to the left of the species name.
+def divsmush(line):
+    kaboom = line.split()
+    '<div class="cell" image-data="' + kaboom[0] + '">' + kaboom[1] + '</div'
+
+
+if args.divimage:
+    [re.sub('^"(.+)","(.+)",', r'\1\2', s) for s in statesc1]
 
 #define some saiks variables
 # var binary - setting this to 0 allows multistate variables
