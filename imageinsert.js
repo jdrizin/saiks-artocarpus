@@ -14,7 +14,7 @@ $('.cell').each(function() {
 			$(cell).html( $(this).attr('src') );
 		});
 		holder.append(img);
-	}
+	};
 	var content = holder.html();
 	// Now that we built the HTML content for the popup, set up the popup for this cell
 	$(cell).poshytip({content: content});
