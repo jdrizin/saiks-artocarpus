@@ -1,10 +1,7 @@
 charconvert.py
 ==============
 
-# charconvert.py
-written to convert two csv files to SAIKS format
-
-The CSV files should be character and state matrices in a format similar to that of SAIKS.
+Convert two CSV files in a simple template to SAIKS format
 
 ## usage
 
