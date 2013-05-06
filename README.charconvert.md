@@ -14,6 +14,7 @@ charconvert.py --help for args.
 * coding
     * Filename for the coding CSV file
     * CSV file should include a header
+    * this script wraps all numbers in quotes
     * header: "Species name",char1,char2,char3,char4,char5
 * states
     * Filename for the states CSV file
@@ -28,8 +29,3 @@ charconvert.py --help for args.
     * Prints the species that were removed due to wholly missing characters
 * -i
     * Wraps states names in <divs> for use in the key.
-
-# SAIKS
-see README.SAIKS for more information about SAIKS
-
-the artocarpus SAIKS setup. 
