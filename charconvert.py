@@ -43,11 +43,13 @@ statesc1 = [re.sub(',+$', '', s) for s in states]
 # are in the column to the left of the species name.
 def divsmush(line):
     kaboom = line.split()
-    '<div class="cell" image-data="' + kaboom[0] + '">' + kaboom[1] + '</div'
-
+    smushed = '<div class="cell" image-data="' + kaboom[0] + '">' + kaboom[1] + '</div'>
+    kaboom[1] = smushed
+    del kaboom[0]
+    return ','.join(kaboom)
 
 if args.divimage:
-    [re.sub('^"(.+)","(.+)",', r'\1\2', s) for s in statesc1]
+    statesc1 = [divsmush(s) for s in statesc1]
 
 #define some saiks variables
 # var binary - setting this to 0 allows multistate variables
