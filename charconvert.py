@@ -42,9 +42,10 @@ statesc1 = [re.sub(',+$', '', s) for s in states]
 # this is not required, so i put it behind a command-line option. it assumes file paths
 # are in the column to the left of the species name.
 def divsmush(line):
-    kaboom = line.split()
-    smushed = '<div class="cell" image-data="' + kaboom[0] + '">' + kaboom[1] + '</div'>
-    kaboom[1] = smushed
+    kaboom = line.split(',')
+    if kaboom[0] != '':
+        smushed = '<div class="cell" image-data="' + kaboom[0] + '">' + kaboom[1] + '</div>'
+        kaboom[1] = smushed
     del kaboom[0]
     return ','.join(kaboom)
 
