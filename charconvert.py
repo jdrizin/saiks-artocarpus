@@ -1,4 +1,4 @@
-  #!/usr/bin/env python
+#!/usr/bin/env python
 #this script should read in a few files and spit out a useful SAIKS js file
 #you can see an example on https://github.com/jdrizin/saiks
 
