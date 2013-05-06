@@ -29,3 +29,7 @@ charconvert.py --help for args.
     * Prints the species that were removed due to wholly missing characters
 * -i
     * Wraps states names in <divs> for use in the key.
+
+## examples
+
+You can find some example files in the example/ directory. Headers get stripped in the script.
