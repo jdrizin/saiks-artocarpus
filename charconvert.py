@@ -27,6 +27,7 @@ if args.printverbose:
     codingremoved = [x for x in coding if (',,,' in x)] #list of bad ones
     removedspecies = [re.findall('"([^"]*)"', x) for x in codingremoved]
     cremovedspecies = [s.replace('\\xc2\\xa0', '') for s in removedspecies]
+    print cremovedspecies
 
 ## strip out 'blank' codes, missing characters break SAIKS
 codingc1 = [x for x in coding if not (',,,' in x)]
