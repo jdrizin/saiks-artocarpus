@@ -46,6 +46,7 @@ common columbine | 2 | 1 | 1
 The character states file should contain the character name and the names of the states in ascending numeric (coding) order. Prepending an image field is optional, and the field will be converted only if it exists, so it's fine to not have an image for a state.
 
 image | character | state1 | state2 | state3 
+--- | --- | --- | --- | ---
 images/leaftypes.jpg | leaf type | simple | compound 
 images/leafarrangement.jpg | leaf arrangement | alternate | opposite | basal
- | flower color | red | orange | yellow | green | blue | purple
+'' | flower color | red | orange | yellow | green | blue | purple
