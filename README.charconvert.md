@@ -29,4 +29,4 @@ charconvert.py --help for args.
 
 ## examples
 
-You can find some example files in the example/ directory. Headers get stripped in the script.
+You can find some example files in the example/ directory. Headers get stripped in the script. The states.csv has images, so pass -i to the script.
