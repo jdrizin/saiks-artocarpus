@@ -9,8 +9,8 @@ import re
 import argparse
 
 parser = argparse.ArgumentParser(description='Process coding and state CSV files into SAIKS/SLIKS format, stripping uncoded species and converting unknown character values into wildcards')
-parser.add_argument("coding", help="filename for the coding CSV file")
-parser.add_argument("states", help="filename for the state CSV file")
+parser.add_argument("coding", help="filename for the species coding CSV file")
+parser.add_argument("states", help="filename for the character states CSV file")
 parser.add_argument("output", help="output filename")
 parser.add_argument("-v", action='store_true', dest="printverbose", default=False, help="Display the species names that were stripped due to missing character coding")
 parser.add_argument("-i", action='store_true', dest="divimage", default=False, help="Wrap character description images in <div> tags to display them on the key. Optional.")
@@ -30,7 +30,7 @@ if args.printverbose:
 
 ## strip out 'blank' codes, missing characters break SAIKS
 codingc1 = [x for x in coding if not (',,,' in x)]
-#change missing data, -, to wildcard, ?
+#change missing data, jj (previously -), to wildcard, ?
 codingc2 = [re.sub('"jj"', '"?"', s) for s in codingc1]
 codingc3 = [re.sub(',([0-9]+)', r',"\1"', s) for s in codingc2] #add "" to all fields
 #remove trailing commas
@@ -44,7 +44,7 @@ statesc1 = [re.sub(',+$', '', s) for s in states]
 def divsmush(line):
     kaboom = line.split(',')
     if kaboom[0] != '':
-        smushed = '<div class="cell" image-data="' + kaboom[0] + '">' + kaboom[1] + '</div>'
+        smushed = '"<div class=\'cell\' image-data=\'' + kaboom[0].replace('"','') + "'>" + kaboom[1].replace('"','') + '</div>"'
         kaboom[1] = smushed
     del kaboom[0]
     return ','.join(kaboom)
