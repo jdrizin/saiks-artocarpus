@@ -24,7 +24,7 @@ del states[0]
 
 #find the ones that we're going to remove and print them, if -v
 if args.printverbose:
-    codingRemoved = [x for x in coding if (',,,' in x)] #list of bad ones
+    codingremoved = [x for x in coding if (',,,' in x)] #list of bad ones
     removedspecies = [re.findall('"([^"]*)"', x) for x in codingremoved]
     print removedspecies
 
