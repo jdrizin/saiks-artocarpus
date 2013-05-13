@@ -37,7 +37,7 @@ codingc3 = [re.sub(',([0-9]+)', r',"\1"', s) for s in codingc2] #add "" to all f
 statesc1 = [re.sub(',+$', '', s) for s in states]
 
 # optional: use images in states! by wrapping the species name in a div, we can
-# display a popup with some javascript. how?
+# display a popup with some javascript.
 # <div class='cell' data-images='PATH/TO/IMAGE'>leaf type</div>, rather than 'leaf type'
 # this is not required, so i put it behind a command-line option. it assumes file paths
 # are in the column to the left of the species name.
