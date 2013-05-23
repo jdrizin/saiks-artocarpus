@@ -44,7 +44,12 @@ statesc1 = [re.sub(',+$', '', s) for s in states]
 def divsmush(line):
     kaboom = line.split(',')
     if kaboom[0] != '':
-        smushed = '"<div class=\'cell\' image-data=\'' + kaboom[0].replace('"','') + "'>" + kaboom[1].replace('"','') + '</div>"'
+        # handle categories, which are split with |. 
+        if kaboom[1].find('|'):
+            piped = kaboom[1].split('|')
+            smushed = piped[0] + '|' + '<div class=\'cell\' image-data=\'' + kaboom[0].replace('"','') + "'>" + piped[1].replace('"','') + '</div>"'
+        else:
+            smushed = '"<div class=\'cell\' image-data=\'' + kaboom[0].replace('"','') + "'>" + kaboom[1].replace('"','') + '</div>"'
         kaboom[1] = smushed
     del kaboom[0]
     return ','.join(kaboom)
