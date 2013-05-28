@@ -2,7 +2,7 @@
 #this script should read in a few files and spit out a useful SAIKS js file
 #you can see an example on https://github.com/jdrizin/saiks
 
-#this script takes 3 arguments on the command line,
+#copyright (c) 2013,  Josh Drizin. license: GPLv2
 
 #i'm using re.sub and argparse
 import re
