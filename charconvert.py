@@ -1,6 +1,7 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2.7
 #this script should read in a few files and spit out a useful SAIKS js file
 #you can see an example on https://github.com/jdrizin/saiks
+# i wrote this for py2.7. i haven't learned py3k or anything.
 
 #this script takes 3 arguments on the command line,
 
