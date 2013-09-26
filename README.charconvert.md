@@ -5,6 +5,8 @@ Convert two CSV files in a simple template to SAIKS format
 
 ## usage
 
+you need python2.7
+
 charconvert.py --help for args.
 
 ### Required arguments
